@@ -14,18 +14,15 @@ actor {
     let transformed : Types.CanisterHttpResponsePayload = {
       status = raw.response.status;
       body = raw.response.body;
-      headers = [{
-        name = "Authorization";
-        value = "Bearer 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";
-      }];
+      headers = [];
     };
     transformed;
   };
 
-  public func sentiment_analysis(text : Text) : async Text {
+  public func sentiment(text : Text) : async Text {
     let ic : Types.IC = actor ("aaaaa-aa");
-    let host : Text = "api-inference.huggingface.co";
-    let url = "https://api-inference.huggingface.co/models/cardiffnlp/twitter-roberta-base-sentiment-latest"; //HTTPS that accepts IPV6
+    let host : Text = "fast-eimile-ssabrut-f00822ac.koyeb.app";
+    let url = "https://fast-eimile-ssabrut-f00822ac.koyeb.app/sentiment"; //HTTPS that accepts IPV6
 
     let idempotency_key : Text = generateUUID();
     let request_headers = [
@@ -33,10 +30,6 @@ actor {
       { name = "User-Agent"; value = "http_post_sample" },
       { name = "Content-Type"; value = "application/json" },
       { name = "Idempotency-Key"; value = idempotency_key },
-      {
-        name = "Authorization";
-        value = "Bearer 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";
-      },
     ];
 
     let request_body_json : Text = "{ \"inputs\" : \"" # text # "\" }";
@@ -73,10 +66,10 @@ actor {
     result;
   };
 
-  public func summarizer(text : Text) : async Text {
+  public func summarize(text : Text) : async Text {
     let ic : Types.IC = actor ("aaaaa-aa");
-    let host : Text = "api-inference.huggingface.co";
-    let url = "https://api-inference.huggingface.co/models/sshleifer/distilbart-cnn-12-6"; //HTTPS that accepts IPV6
+    let host : Text = "fast-eimile-ssabrut-f00822ac.koyeb.app";
+    let url = "https://fast-eimile-ssabrut-f00822ac.koyeb.app/summarize"; //HTTPS that accepts IPV6
 
     let idempotency_key : Text = generateUUID();
     let request_headers = [
@@ -84,10 +77,6 @@ actor {
       { name = "User-Agent"; value = "http_post_sample" },
       { name = "Content-Type"; value = "application/json" },
       { name = "Idempotency-Key"; value = idempotency_key },
-      {
-        name = "Authorization";
-        value = "Bearer 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";
-      },
     ];
 
     let request_body_json : Text = "{ \"inputs\" : \"" # text # "\" }";
@@ -124,10 +113,10 @@ actor {
     result;
   };
 
-  public func chatbot(text : Text) : async Text {
+  public func chat(text : Text) : async Text {
     let ic : Types.IC = actor ("aaaaa-aa");
-    let host : Text = "api-inference.huggingface.co";
-    let url = "https://api-inference.huggingface.co/models/tiiuae/falcon-7b-instruct"; //HTTPS that accepts IPV6
+    let host : Text = "fast-eimile-ssabrut-f00822ac.koyeb.app";
+    let url = "https://fast-eimile-ssabrut-f00822ac.koyeb.app/chat"; //HTTPS that accepts IPV6
 
     let idempotency_key : Text = generateUUID();
     let request_headers = [
@@ -135,10 +124,6 @@ actor {
       { name = "User-Agent"; value = "http_post_sample" },
       { name = "Content-Type"; value = "application/json" },
       { name = "Idempotency-Key"; value = idempotency_key },
-      {
-        name = "Authorization";
-        value = "Bearer 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";
-      },
     ];
 
     let request_body_json : Text = "{ \"inputs\" : \"" # text # "\" }";
