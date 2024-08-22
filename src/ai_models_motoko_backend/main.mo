@@ -16,7 +16,7 @@ actor {
       body = raw.response.body;
       headers = [{
         name = "Authorization";
-        value = "Bearer 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";
+        value = "Bearer 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";
       }];
     };
     transformed;
@@ -33,6 +33,10 @@ actor {
       { name = "User-Agent"; value = "http_post_sample" },
       { name = "Content-Type"; value = "application/json" },
       { name = "Idempotency-Key"; value = idempotency_key },
+      {
+        name = "Authorization";
+        value = "Bearer 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";
+      },
     ];
 
     let request_body_json : Text = "{ \"inputs\" : \"" # text # "\" }";
@@ -80,6 +84,10 @@ actor {
       { name = "User-Agent"; value = "http_post_sample" },
       { name = "Content-Type"; value = "application/json" },
       { name = "Idempotency-Key"; value = idempotency_key },
+      {
+        name = "Authorization";
+        value = "Bearer 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";
+      },
     ];
 
     let request_body_json : Text = "{ \"inputs\" : \"" # text # "\" }";
