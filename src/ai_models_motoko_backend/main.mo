@@ -55,18 +55,17 @@ actor {
     };
 
     // // 2.3 The HTTP request
-    let http_request : Types.HttpUpdateRequest = {
+    let http_request : Types.HttpRequestArgs = {
       url = url;
       max_response_bytes = null; //optional for request
       headers = request_headers;
       body = ?request_body_as_nat8;
       method = #post;
       transform = ?transform_context;
-      upgrade = ?true; // Add the upgrade field here
     };
 
     Cycles.add(21_850_258_000);
-    let http_response : Types.HttpResponsePayload = await ic.http_request_update(http_request);
+    let http_response : Types.HttpResponsePayload = await ic.http_request(http_request);
     let response_body : Blob = Blob.fromArray(http_response.body);
     let decoded_text : Text = switch (Text.decodeUtf8(response_body)) {
       case (null) { "No value returned" };

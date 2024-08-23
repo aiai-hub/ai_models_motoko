@@ -9,7 +9,6 @@ module Types {
         body : ?[Nat8];
         method : HttpMethod;
         transform : ?TransformRawResponseFunction;
-        upgrade : ?Bool; // Add the upgrade field here
     };
 
     public type HttpHeader = {
@@ -60,20 +59,8 @@ module Types {
         context : Blob;
     };
 
-    // Define the HttpUpdateRequest type
-    public type HttpUpdateRequest = {
-        url : Text;
-        max_response_bytes : ?Nat64;
-        headers : [HttpHeader];
-        body : ?[Nat8];
-        method : HttpMethod;
-        transform : ?TransformRawResponseFunction;
-        upgrade : ?Bool;
-    };
-
     //3. Declaring the management canister which is used to make the HTTPS outcall
     public type IC = actor {
         http_request : HttpRequestArgs -> async HttpResponsePayload;
-        http_request_update : HttpUpdateRequest -> async HttpResponsePayload; // Add the http_request_update method
     };
 };
